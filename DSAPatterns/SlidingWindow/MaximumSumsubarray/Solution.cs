@@ -1,4 +1,6 @@
-﻿namespace DSAPatterns.SlidingWindow.MaximumSumsubarray;
+﻿using System.Diagnostics;
+
+namespace DSAPatterns.SlidingWindow.MaximumSumsubarray;
 
 public class Solution
 {
@@ -15,9 +17,7 @@ public class Solution
             if (End > Numbers.Length) break;
 
             int[] window =  Numbers[Start..End];
-
-            // Window Count can be Optimized
-            int Sum = HasDistictWithinWindowSile(window, WindowSize) ? 0: window.Sum();
+            int Sum = HasDistictWithinWindowSize(window, WindowSize) ? 0: window.Sum();
 
             MaxSum = Math.Max(MaxSum, Sum);
             End++;
@@ -27,16 +27,37 @@ public class Solution
         return MaxSum;
     }
 
-    public bool HasDistictWithinWindowSile(int[] window, int size)
+    public bool HasDistictWithinWindowSize(int[] window, int size)
     {
+        //int left = 0;
+      
 
+        //Dictionary<int, int> Disticts = new Dictionary<int, int>();
+
+        //for (int right = 0; right < window.Length; right++)
+        //{
+        //    if (Disticts.ContainsKey(window[right]))
+        //    {
+
+        //        Disticts[window[right]]++;
+        //    }
+        //    else
+        //    { 
+            
+        //        Disticts.Add(window[right], 1);
+        //    }
+
+        //}
+        
+        //return Disticts.Keys.Count() < size;
         return window.Distinct().Count() < size;
+
     }
 
-    public long MessureTimeComplexity()
+    public long MessureTimeComplexity(Func<long> func)
     { 
-    
-
-        
+        var watch = Stopwatch.StartNew();
+        func();
+        return watch.ElapsedMilliseconds;
     }
 }
