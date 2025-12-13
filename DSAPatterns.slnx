@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DSAPatterns.Tests/DSAPatterns.Tests.csproj" />
+  <Project Path="DSAPatterns/DSAPatterns.csproj" />
+</Solution>
