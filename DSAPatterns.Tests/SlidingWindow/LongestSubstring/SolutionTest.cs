@@ -39,13 +39,7 @@ public class SolutionTest
 
         long result = _solution.MessureTimeComplexity(() => _solution.MaximumSubarraySum(Numbers, WindowSize));
         Assert.That(result, Is.LessThanOrEqualTo(20));
-        Assert.That(_solution.HasDistictWithinWindowSize(new int[] { 3, 3, 5, 5, 3, 3, 1, 1, 4, 2, 5, 1 }, 107), Is.False);
+
     }
 
-    [Test]
-    public void HasDistictWithinWindowSizeTest()
-    {
-
-        Assert.That(_solution.HasDistictWithinWindowSize(new int[] { 3, 3, 5, 5, 3, 3, 1, 1, 4, 2, 5, 1 }, 4), Is.False);
-    }
 }

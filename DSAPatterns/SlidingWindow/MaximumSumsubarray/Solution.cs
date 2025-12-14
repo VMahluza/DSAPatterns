@@ -6,53 +6,40 @@ public class Solution
 {
     public long MaximumSubarraySum(int[] Numbers, int WindowSize)
     {
-        if(Numbers.Length < WindowSize) return 0;
+        // initial left pointer and right pointer to 0
+        // Get the current window sum at the bingining
+        // while the right pointer is still within an array length
+        // then it sum has not dublicates 
+        // then
+        // add the value from the array of the right pointer on the sum
+        // remove the value from the array of the left ponter on the sum 
+        // add it to the max sum 
+        // return max sum
 
-        int End = WindowSize;
+       
+        
+        if(Numbers.Length < WindowSize) return 0;
         int MaxSum = 0;
 
-        for (int Start = 0; Start < Numbers.Length; Start++ )
-        {
+        int LeftP = 0;
+        int StartingRightWindowP = WindowSize - 1;
+        int CurrentSum = Numbers[LeftP..StartingRightWindowP].Sum();
 
-            if (End > Numbers.Length) break;
+        for (int RightP = ++StartingRightWindowP; RightP < Numbers.Length; RightP++)
+        { 
+  
+            CurrentSum -= Numbers[LeftP++];
+            CurrentSum += Numbers[RightP];
 
-            int[] window =  Numbers[Start..End];
-            int Sum = HasDistictWithinWindowSize(window, WindowSize) ? 0: window.Sum();
-
-            MaxSum = Math.Max(MaxSum, Sum);
-            End++;
-
+            MaxSum = Math.Max(CurrentSum, MaxSum);
+     
+            
         }
 
         return MaxSum;
     }
 
-    public bool HasDistictWithinWindowSize(int[] window, int size)
-    {
-        //int left = 0;
-      
 
-        //Dictionary<int, int> Disticts = new Dictionary<int, int>();
-
-        //for (int right = 0; right < window.Length; right++)
-        //{
-        //    if (Disticts.ContainsKey(window[right]))
-        //    {
-
-        //        Disticts[window[right]]++;
-        //    }
-        //    else
-        //    { 
-            
-        //        Disticts.Add(window[right], 1);
-        //    }
-
-        //}
-        
-        //return Disticts.Keys.Count() < size;
-        return window.Distinct().Count() < size;
-
-    }
 
     public long MessureTimeComplexity(Func<long> func)
     { 
